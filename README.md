@@ -1,1 +1,1 @@
-# LinkedIn PDF Parser
+# LinkedIn Resume Parser
