@@ -11,11 +11,7 @@
     "strictPropertyInitialization": false,
     "noImplicitThis": false,
     "baseUrl": ".",
-    "paths": {
-      "@src": ["src"],
-      "@src/*": ["src/*"]
-    },
-    "typeRoots": ["node_modules/@types", "typings"]
+    "typeRoots": ["node_modules/@types"]
   },
   "exclude": ["node_modules", "dist"]
 }
