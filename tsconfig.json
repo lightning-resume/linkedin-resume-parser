@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "declaration": true,
+    "removeComments": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
+    "baseUrl": ".",
+    "paths": {
+      "@src": ["src"],
+      "@src/*": ["src/*"]
+    },
+    "typeRoots": ["node_modules/@types", "typings"]
+  },
+  "exclude": ["node_modules", "dist"]
+}
