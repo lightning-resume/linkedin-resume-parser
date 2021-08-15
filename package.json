@@ -17,8 +17,8 @@
     "chekuda (https://github.com/chekuda)",
     "oxmanroman (https://github.com/oxmanroman)"
   ],
-  "main": "dist/src/index",
-  "types": "dist/src/index",
+  "main": "dist/index",
+  "types": "dist/index",
   "files": [
     "dist"
   ],
@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.10",
-    "pdf-parse": "1.1.1",
     "yargs": "17.1.1"
   },
   "devDependencies": {
