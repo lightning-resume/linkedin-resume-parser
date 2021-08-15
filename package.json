@@ -17,6 +17,7 @@
     "chekuda (https://github.com/chekuda)",
     "oxmanroman (https://github.com/oxmanroman)"
   ],
+  "bin": "dist/index",
   "main": "dist/index",
   "types": "dist/index",
   "files": [
