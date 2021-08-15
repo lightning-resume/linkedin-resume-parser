@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { Resume } from 'typings/linkedin-pdf-parser';
 import yargs from 'yargs/yargs';
 import { parseLinkedInHTML } from './parser';
+import { Resume } from './types';
 
 const argv = yargs(process.argv.slice(2))
   .options({

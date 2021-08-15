@@ -1,5 +1,5 @@
 import cheerio, { Cheerio, CheerioAPI, Element } from 'cheerio';
-import { Education, Experience, HonorOrAward, LicenseOrCertification, Profile, Resume } from 'typings/linkedin-pdf-parser';
+import { Education, Experience, HonorOrAward, LicenseOrCertification, Profile, Resume } from './types';
 
 const CREDENTIAL_ID_PREFIX = 'Credential ID';
 
