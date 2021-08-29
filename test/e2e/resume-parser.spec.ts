@@ -8,7 +8,7 @@ describe('Resume Parser', () => {
   const outputPath = 'tmp/johndoe.json';
   let output: Resume;
 
-  beforeEach(async () => {
+  before(async () => {
     await convertResumeToJSON(inputPath, outputPath);
     output = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
   });
@@ -83,11 +83,11 @@ describe('Resume Parser', () => {
   });
 
   it('should parse skills correctly', async () => {
-    expect(output.skills).to.equal(['Smile', 'Build resumes', 'Build tools for building resumes', 'Build linkedin profiles']);
+    expect(output.skills).to.deep.equal(['Smile', 'Build resumes', 'Build tools for building resumes', 'Build linkedin profiles']);
   });
 
   it('should parse honors and awards correctly', async () => {
-    expect(output.honorsAndAwards).to.equal([
+    expect(output.honorsAndAwards).to.deep.equal([
       {
         id: '1',
         title: 'Fastest resume creator',
