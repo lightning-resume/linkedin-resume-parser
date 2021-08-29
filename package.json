@@ -17,9 +17,9 @@
     "chekuda (https://github.com/chekuda)",
     "oxmanroman (https://github.com/oxmanroman)"
   ],
-  "bin": "dist/run.js",
   "main": "dist/index",
   "types": "dist/index",
+  "bin": "dist/run.js",
   "files": [
     "dist"
   ],
@@ -27,8 +27,8 @@
     "start": "ts-node src/run",
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "test": "yarn test:unit && yarn test:e2e",
-    "test:unit": "cross-env mocha 'test/unit/**/*.spec.ts'",
-    "test:e2e": "cross-env mocha 'test/e2e/**/*.spec.ts'",
+    "test:unit": "cross-env mocha -r ts-node/register 'test/unit/**/*.spec.ts'",
+    "test:e2e": "cross-env mocha -r ts-node/register 'test/e2e/**/*.spec.ts'",
     "lint:check": "cross-env prettier --check './**'",
     "lint:fix": "sort-package-json && cross-env prettier --write './**'"
   },
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
+    "@types/chai": "4.2.21",
     "@types/mocha": "9.0.0",
     "@types/node": "15.12.2",
     "@types/yargs": "17.0.2",
