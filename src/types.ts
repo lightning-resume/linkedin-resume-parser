@@ -9,7 +9,7 @@ export interface Experience {
   id: string;
   position: string;
   company: string;
-  date: string;
+  date?: string;
   description?: string;
 }
 

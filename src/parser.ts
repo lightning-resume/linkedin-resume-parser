@@ -39,7 +39,7 @@ export function parseExperiences($: CheerioAPI, section: Cheerio<Element>): Expe
       id: String(containers.length - 1 - index),
       position: parseText(container.find('h4')),
       company: parseText(container.find('p:nth-of-type(1)')),
-      date: parseText(container.find('p:nth-of-type(2)')),
+      date: parseTextSafe(container.find('p:nth-of-type(2)')),
       description: parseTextSafe(container.find('p:nth-of-type(3)'), false),
     }));
 }
@@ -82,13 +82,19 @@ export function parseHonorsAndAwards($: CheerioAPI, section: Cheerio<Element>): 
   const containers = Array.from(section.find('li.resume-builder__subsection-container'));
   return containers
     .map((container) => $(container))
-    .map((container, index) => ({
-      id: String(containers.length - 1 - index),
-      title: parseText(container.find('h4').clone().children().remove().end() as Cheerio<Element>),
-      issuer: parseTextSafe(container.find('h4 > span')),
-      date: parseTextSafe(container.find('p:nth-of-type(1)')), // TODO: this might fail if there is no date defined in linkedin,
-      description: parseTextSafe(container.find('p:nth-of-type(2)'), false),
-    }));
+    .map((container, index) => {
+      let title = parseText(container.find('h4').clone().children().remove().end() as Cheerio<Element>);
+      // remove " -" that linkedin adds to the end of the title in case there is an issuer
+      if (title.substr(-2) === ' -') title = title.slice(0, -2);
+
+      return {
+        id: String(containers.length - 1 - index),
+        title,
+        issuer: parseTextSafe(container.find('h4 > span')),
+        date: parseTextSafe(container.find('p:nth-of-type(1)')), // TODO: this might fail if there is no date defined in linkedin,
+        description: parseTextSafe(container.find('p:nth-of-type(2)'), false),
+      };
+    });
 }
 
 export function parseProfile(section: Cheerio<Element>): Profile {
@@ -128,13 +134,25 @@ function parseButtonLabel(label: string): LinkedInSectionName {
 }
 
 function parseText(elm: Cheerio<Element>, removeBreaklines = true): string {
+  let result = elm.text();
+
+  // remove breaklines if needed
   if (removeBreaklines) {
-    return elm.text().replace(/\n/g, '').trim();
-  } else {
-    return elm.text().trim();
+    result = result.replace(/\n/g, '');
   }
+
+  // replace multiple spaces by single ones
+  result = result.replace(/\s\s+/g, ' ');
+
+  // trim text
+  result = result.trim();
+
+  return result;
 }
 
 function parseTextSafe(elm: Cheerio<Element>, removeBreaklines = true): string | undefined {
-  return elm.length ? parseText(elm, removeBreaklines) : undefined;
+  if (!elm.length) return;
+
+  const text = parseText(elm, removeBreaklines);
+  return text.length ? text : undefined;
 }
