@@ -93,9 +93,9 @@ export function parseHonorsAndAwards($: CheerioAPI, section: Cheerio<Element>): 
 
 export function parseProfile(section: Cheerio<Element>): Profile {
   return {
-    name: parseText(section.find('h2')),
-    location: parseText(section.find('h2 + p')),
-    email: parseText(section.find('li-icon[type="envelope-open-icon"] + p')),
+    name: parseText(section.find('h1')),
+    location: parseText(section.find('h1 + p')),
+    email: parseText(section.find('li-icon[type="envelope-open-icon"] + span')),
     linkedin: parseText(section.find('li-icon[type="linkedin-inbug-color-icon"] + a')),
   };
 }
