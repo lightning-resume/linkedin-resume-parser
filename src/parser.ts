@@ -129,7 +129,7 @@ function parseButtonLabel(label: string): LinkedInSectionName {
 
 function parseText(elm: Cheerio<Element>, removeBreaklines = true): string {
   if (removeBreaklines) {
-    return elm.text().replace(/\n/g, '').trim();
+    return elm.text().replace(/\n/g, ' ').trim();
   } else {
     return elm.text().trim();
   }
